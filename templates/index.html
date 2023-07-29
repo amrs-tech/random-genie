@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rAnDoM GeNiE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css" integrity="sha512-9RIcp1f4CE6dEuYX9085tXaEbYd1ap04d2Av1ub/dwuT33WbfbHStDdQ+shKrp5wzZzleh5DOg+7ABSnaQP/nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css" integrity="sha512-p/19UB+ls7zsYqyFt0S+qh0P05ThDxzQSwtY4Jo01M4OG1ZkiEMHE942OZ4wh86sT5BIrFNhY3aLsQ5pTqVIzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/custom1.css')}}" />
+    <style type="text/css">
+      body {
+        height: 100vh;
+        background-image: linear-gradient(to bottom right, white, lightblue);
+      }
+      .container-center .decoy {
+        margin: 0 auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      #main-card {
+        margin-top: 5px;
+        width: 600px;
+        height: 650px;
+        border-radius: 7px;
+        background-color: lightblue;
+        background-image: linear-gradient(to bottom right, lightblue, white);
+        background-size: contain;
+        text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        #main-card {
+          margin-top: 25px;
+          width: 570px;
+          height: 630px;
+          border-radius: 7px;
+          background-color: lightblue;
+          background-image: linear-gradient(to bottom right, lightblue, white);
+          background-size: contain;
+          text-align: center;
+        }
+      }
+      @media (min-width: 320px) {
+        #main-card {
+          margin-top: 25px;
+          width: 570px;
+          height: 630px;
+          border-radius: 7px;
+          background-color: lightblue;
+          background-image: linear-gradient(to bottom right, lightblue, white);
+          background-size: contain;
+          text-align: center;
+        }
+      }
+
+      .top-right {
+        float: right;
+        margin-bottom: 18px;
+        margin-right: 10px;
+        margin-top: 3px;
+      }
+
+      @media (min-width: 768px) {
+        .top-right {
+          float: right;
+          margin-bottom: 15px;
+          margin-right: 7px;
+          margin-top: 5px;
+          z-index: 10;
+        }
+      }
+      @media (min-width: 320px) {
+        .top-right {
+          float: right;
+          margin-bottom: 15px;
+          margin-right: 7px;
+          margin-top: 5px;
+          z-index: 10;
+        }
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 25px;
+      }
+
+      .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .switch input[type='checkbox']:checked + .slider {
+        background-color: #2198F3;
+      }
+
+      .switch input[type='checkbox']:focus + .slider {
+        box-shadow: 0 0 1px #2198F3;
+      }
+
+      .switch input[type='checkbox']:checked + .slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 32px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      .theme-mode-txt {
+        margin-top: 2px;
+        margin-left: 2px;
+        float: right;
+        font-weight: 610;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toggle" class="top-right">
+      <label class="switch">
+        <input id="mode-switch-input" type="checkbox" onclick="modeChange();">
+        <span class="slider round"></span>
+      </label>
+      <span class="theme-mode-txt" id="light-mode-txt">Light Mode</span>
+      <span class="theme-mode-txt" id="dark-mode-txt">Dark Mode</span>
+    </div>
+    <div class="container container-center"> 
+      <!-- <div class="columns">
+        <div class="column col-6">col-6</div>
+        <div class="column col-6">col-6</div>
+      </div> -->
+      <div class="decoy">  
+        <div id="main-card" class="card">
+          <div class="card-header">
+            <div class="card-title h4">rAnDoM GeNiE</div>
+            <div class="card-subtitle text-darkgrey">Generates random passwords</div>
+            <br>
+          </div>
+          <div class="card-body">
+            <div class="columns">
+              <div class="column">
+                <form id="input-form" action="/" method="POST">
+                  <input id="custom-inp" type="text" name="custom" placeholder="Custom String (optional)" spellcheck="false"><br>
+                  <p class="note">(Random password will be generated with these characters)</p>
+                  <br><div class="divider text-center" data-content="OR"></div><br>
+                  <div id="checkbox-input-div">  
+                    <div class="form-group form-inline">
+                      <label class="form-radio">
+                        <input type="radio" name="type" checked="" value="alpha"><i class="form-icon"></i> Alphabets
+                      </label>
+                      <label class="form-radio">
+                        <input type="radio" name="type" value="alpha_num"><i class="form-icon"></i> Alphabets+Numeric
+                      </label>
+                      <label class="form-radio">
+                        <input type="radio" name="type" value="alpha_num_spl"><i class="form-icon"></i> Alphabets+Numeric+Special Characters
+                      </label>
+                    </div>
+                  </div>
+                  <input id="length-inp" type="number" name="length" placeholder="Length"><br>
+                  <p class="note">(Length should be between an inclusive range of 5 and 32)</p>
+                  <input class="btn" type="submit" value="Generate" onclick="handleForm(event);">
+                  <br>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div id="output">
+              <p id="out-text">{{output}}</p> &nbsp;&nbsp;<span class="btn" id="cpy-btn" onclick="cpyText();"><i class="icon icon-copy"></i>&nbsp;&nbsp;COPY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var lightModeText = document.getElementById('light-mode-txt');
+    var darkModeText = document.getElementById('dark-mode-txt');
+    darkModeText.style.display = 'none';
+    var modeSwitchInput = document.getElementById('mode-switch-input');
+    var mainCard = document.getElementById('main-card');
+    var historyModeValue = sessionStorage.getItem('modeValue');
+    // Setting Dark-Light Mode
+    function setLightMode(){
+      darkModeText.style.display = 'none';
+      lightModeText.style.display = 'inline';
+      document.body.style.backgroundImage = "linear-gradient(to bottom right, white, lightblue)";
+      mainCard.style.backgroundImage = "linear-gradient(to bottom right, lightblue, white)";
+      document.body.style.color = 'black';
+      sessionStorage.setItem('modeValue','light');
+    }
+    function setDarkMode(){
+      darkModeText.style.display = 'inline';
+      lightModeText.style.display = 'none';
+      document.body.style.backgroundImage = "linear-gradient(to bottom right, #0e1a20, #111112)";
+      mainCard.style.backgroundImage = "linear-gradient(to bottom right, #111112, #0e1a20)";
+      document.body.style.color = 'white';
+      sessionStorage.setItem('modeValue','dark');
+    }
+    function modeChange(){
+      if (modeSwitchInput.checked == false) {
+        setLightMode();
+      }
+      else {
+        setDarkMode();
+      }
+    }
+    if (historyModeValue == 'dark'){
+      setDarkMode();
+      modeSwitchInput.checked = true;
+    }
+    else{
+      setLightMode();
+      modeSwitchInput.checked = false;
+    }
+    // Copy Button
+    var copyBtn = document.getElementById('cpy-btn');
+    var copyText = document.getElementById('out-text');
+    if ('{{output}}' !== ''){
+      copyBtn.style.display = "inline";
+    }
+
+    function cpyText(){
+      console.log('copied');
+      navigator.clipboard.writeText(copyText.innerHTML.split(": ")[1]);
+      copyBtn.innerHTML = copyBtn.innerHTML.replace(";COPY",";COPIED");
+    }
+
+    function handleForm(event) {
+      event.preventDefault();
+      // Length Input Handle
+      var lengthElement = document.getElementById('length-inp');
+      console.log(lengthElement.required);
+      var customElement = document.getElementById('custom-inp');
+      if (customElement.value == '' && lengthElement.value == '') {
+        lengthElement.required = true;
+        alert('Enter Length or Custom String')
+      }
+      else {
+        lengthElement.required = false;
+        var firstForm = document.getElementsByTagName('form')[0];
+        firstForm.submit();
+      }
+    }
+
+  </script>
+</html>
