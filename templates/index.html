@@ -5,6 +5,7 @@
     <title>rAnDoM GeNiE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css" integrity="sha512-9RIcp1f4CE6dEuYX9085tXaEbYd1ap04d2Av1ub/dwuT33WbfbHStDdQ+shKrp5wzZzleh5DOg+7ABSnaQP/nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css" integrity="sha512-p/19UB+ls7zsYqyFt0S+qh0P05ThDxzQSwtY4Jo01M4OG1ZkiEMHE942OZ4wh86sT5BIrFNhY3aLsQ5pTqVIzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/custom1.css')}}" />
     <style type="text/css">
       body {
@@ -145,6 +146,9 @@
         float: right;
         font-weight: 610;
       }
+      .footer {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -164,7 +168,9 @@
       <div class="decoy">  
         <div id="main-card" class="card">
           <div class="card-header">
-            <div class="card-title h4">rAnDoM GeNiE</div>
+            <div class="card-title h4">
+              🧞 rAnDoM GeNiE 🧞‍♀️
+            </div>
             <div class="card-subtitle text-darkgrey">Generates random string</div>
             <br>
           </div>
@@ -201,6 +207,19 @@
               <p id="out-text">{{output}}</p> &nbsp;&nbsp;<span class="btn" id="cpy-btn" onclick="cpyText();"><i class="icon icon-copy"></i>&nbsp;&nbsp;COPY</span>
             </div>
           </div>
+        </div>
+        <div class="footer">
+          <p>Developed by AmrsTech<br>
+            <a target="_blank" href="https://github.com/amrs-tech/">
+              <i class="fa fa-github" style="font-size:25px"></i>
+            </a>&nbsp;
+            <a target="_blank" href="mailto:amrs.tech@gmail.com">
+              <i class="fa fa-envelope" style="font-size:23px"></i>
+            </a>&nbsp;
+            <a target="_blank" href="https://twitter.com/amrstech/">
+              <i class="fa fa-twitter" style="font-size:25px"></i>
+            </a>&nbsp;
+          </p>
         </div>
       </div>
     </div>
